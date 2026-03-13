@@ -32,7 +32,6 @@ double measureWithTSC(const std::function<void()>& task) {
     return elapsedMs;
 }
 
-// Замер с использованием QueryPerformanceCounter
 double measureWithQPC(const std::function<void()>& task) {
     LARGE_INTEGER frequency{}, start{}, end{};
     QueryPerformanceFrequency(&frequency);
@@ -44,7 +43,6 @@ double measureWithQPC(const std::function<void()>& task) {
     return elapsedMs;
 }
 
-// Замер с использованием GetTickCount64
 double measureWithGetTickCount64(const std::function<void()>& task) {
     const ULONGLONG start = GetTickCount64();
     task();
@@ -52,7 +50,6 @@ double measureWithGetTickCount64(const std::function<void()>& task) {
     return static_cast<double>(end - start);
 }
 
-// Запуск нескольких измерений
 std::vector<double> runMeasurements(
     TimerType type,
     const std::function<void()>& task,

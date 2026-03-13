@@ -24,7 +24,6 @@ Statistics calculateStatistics(const std::vector<double>& data) {
         sqSum += d * d;
     }
 
-    // Выборочная дисперсия
     if (data.size() > 1) {
         stats.variance = sqSum / static_cast<double>(data.size() - 1);
     } else {
@@ -33,7 +32,6 @@ Statistics calculateStatistics(const std::vector<double>& data) {
 
     stats.stddev = std::sqrt(stats.variance);
 
-    // 95% доверительный интервал для среднего (приближённо через 1.96)
     const double z = 1.96;
     const double margin = z * stats.stddev / std::sqrt(static_cast<double>(data.size()));
     stats.ciLow = stats.mean - margin;
